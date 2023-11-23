@@ -21,6 +21,7 @@ class BinaryNumber:
             for bit in bits[::-1]:
                 self.__string = f"{self.__string}{str(bit)}"
             self.__value = bits
+
         
     def __str__(self) -> str:
         return self.__string
@@ -37,3 +38,6 @@ class BinaryNumber:
     
     def __sub__(self, other):
         return BinaryNumber(value_decimal=self.decimal - other.decimal)
+    
+    def __len__(self):
+        return len(self.__string)

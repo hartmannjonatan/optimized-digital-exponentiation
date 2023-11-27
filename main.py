@@ -27,6 +27,15 @@ def fourth_power_4bits(x: BinaryNumber):
 '''
 
     return somar_matriz_vetores(m, x)
+    
+def cube_5bits(x: BinaryNumber):
+    m = '''45	345	1’235	2345	1345	13’45+1345’	34+23	123	15	12	13	13	12	1
+0	135	1’35	1’2’35+1235	124	1’24+125	25	24	13	14	14	0	0	0
+0	5	245	145	23’45+2345’	35+15	24+14	1’25	1’24	15	2	0	0	0
+0	0	0	345’	1’35+23’5	235	135	3+14	0	23+13	0	0	0	0
+0	0	0	45+25	4+15	0	0	0	0	0	0	0	0	0
+'''
+    return somar_matriz_vetores(m, x)
 
 def somar_matriz_vetores(matriz: str, x: BinaryNumber):
     sum = BinaryNumber(value='0')
@@ -44,6 +53,13 @@ def test():
         assert res == i**3, f"Erro: {i}**3 = {res} (correto: {i**3})"
         res = fourth_power_4bits(x).decimal
         assert res == i**4, f"Erro: {i}**4 = {res} (correto: {i**4})"
+        
+def test_5bits():
+    for i in range(0, 32):
+        i_bin = bin(i)[2:].zfill(5)
+        x = BinaryNumber(i_bin)
+        res = cube_5bits(x).decimal
+        assert res == i**3, f"Erro: {i}**3 = {res} (correto: {i**3})"
 
 def vetor_to_binaryNumber(vetor_str: str, x: BinaryNumber):
     v = vetor_str.split('\t')
@@ -115,6 +131,8 @@ m = '''234	1234	2’34	124	123	1’34	1’23	12’3+1’234	124’	14	123+13	0	0
 0	0	4	0	34	23’4	3	123+134	234+134	234+134	0	0	0	0	0
 '''
 
-print(matriz_to_stdLogicVector(m))
+#print(matriz_to_stdLogicVector(m))
 
 # test()
+
+test_5bits()
